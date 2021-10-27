@@ -11,15 +11,15 @@ def solve(kor, jpn, k_goals, j_goals):
 			# dp[i][j] = 4가지 경우(first, second, third, fourth)가 가능
 			#            그 중에서 최대 골 수를 계산
 			# kor[i]와 jpn[j]가 짝을 맺는 경우와 둘 다 고려에서 제외되는 경우
-			first = dp[i-1][j-1]
+			first_second = dp[i-1][j-1]
 			if kor[i]!=jpn[j]:
 				if (kor[i]=='W' and k_goals[i] > j_goals[j]) or (jpn[j]=='W' and k_goals[i] < j_goals[j]):
-					first +=  k_goals[i] + j_goals[j]
+					first_second +=  k_goals[i] + j_goals[j]
 			# kor[i]와 jpn[j] 중 하나만 고려에서 제외되는 경우
 			third = dp[i-1][j]
 			fouth = dp[i][j-1]
 			# first, second, third, fouth를 계산해보자
-			dp[i][j] = max(first, third, fouth)
+			dp[i][j] = max(first_second, third, fouth)
 
 	return dp[n][n]
 
